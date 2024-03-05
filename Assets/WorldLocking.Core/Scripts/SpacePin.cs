@@ -266,6 +266,11 @@ namespace Microsoft.MixedReality.WorldLocking.Core
             ResetModelingPose();
 
             CheckDependencies();
+
+            if(manager == null)
+            {
+                Debug.Log("Pito");
+            }
         }
 
         /// <summary>

@@ -12,7 +12,6 @@ public class ItemInventory : MonoBehaviour
     {
         var newItem = invetoryPool[index];
         newItem.SetActive(true);
-        GameObject spawnedObject = Instantiate(newItem);
-        return spawnedObject;
+        return newItem;
     }
 }

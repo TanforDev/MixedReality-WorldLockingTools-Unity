@@ -3,6 +3,7 @@ using Microsoft.MixedReality.Toolkit.Experimental.Utilities;
 using Microsoft.MixedReality.Toolkit.Input;
 using Microsoft.MixedReality.Toolkit.UI;
 using Microsoft.MixedReality.WorldLocking.Core;
+using Microsoft.MixedReality.WorldLocking.Examples;
 using Microsoft.MixedReality.WorldLocking.Tools;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +13,6 @@ using UnityEngine.XR.WSA;
 public class PlaceItems : InputSystemGlobalHandlerListener, IMixedRealityPointerHandler
 {
     [SerializeField] private ItemInventory inventory;
-    private WorldAnchorManager worldAnchorManager;
 
     #region Private Fields
     private enum BuildMode
@@ -99,8 +99,6 @@ public class PlaceItems : InputSystemGlobalHandlerListener, IMixedRealityPointer
     /// </summary>
     protected override void Start()
     {
-        worldAnchorManager = FindObjectOfType<WorldAnchorManager>();
-
         base.Start();
 
         radioSet = gameObject.GetComponent<InteractableToggleCollection>();
@@ -142,10 +140,14 @@ public class PlaceItems : InputSystemGlobalHandlerListener, IMixedRealityPointer
         newObj.transform.position = hitPos;
         newObj.transform.rotation = hitRot;
 
-        worldAnchorManager.AttachAnchor(newObj);
 
-        //Pose pose = new Pose(hitPos, hitRot);
-        //newObj.GetComponent<SpacePin>().SetFrozenPose(pose);
+        Pose pose = new Pose(hitPos, hitRot);
+
+
+        SpacePinOrientableManipulation pin = newObj.GetComponent<SpacePinOrientableManipulation>();
+        pin.SetSpongyPose(pose);
+
+
 
         //var twa = newObj.AddComponent<ToggleWorldAnchor>();
         //twa.AlwaysLock = true;

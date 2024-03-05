@@ -219,6 +219,10 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.Utilities
         /// <returns>The name of the newly attached anchor.</returns>
         public string AttachAnchor(GameObject gameObjectToAnchor, string anchorName = null)
         {
+#if !UNITY_WSA || UNITY_EDITOR || UNITY_2020_1_OR_NEWER
+            Debug.LogWarning("World Anchor Manager does not work for this build. AttachAnchor will not be called.");
+            return null;
+#else
             if (gameObjectToAnchor == null)
             {
                 Debug.LogError("[WorldAnchorManager] Must pass in a valid gameObject");
@@ -243,6 +247,7 @@ namespace Microsoft.MixedReality.Toolkit.Experimental.Utilities
             );
 
             return anchorName;
+#endif // !UNITY_WSA || UNITY_EDITOR || UNITY_2020_1_OR_NEWER
         }
 
         /// <summary>
