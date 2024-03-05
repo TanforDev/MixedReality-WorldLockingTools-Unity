@@ -7,6 +7,7 @@
 /Logs/
 /Obj/
 /Temp/
+/Builds/
 
 /Assets/WSATestCertificate.pfx
 /Assets/WSATestCertificate.pfx.meta
