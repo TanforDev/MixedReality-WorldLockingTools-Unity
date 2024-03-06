@@ -136,9 +136,23 @@ MonoBehaviour:
   - {fileID: 3103443437213994512, guid: 7a934234b90e1184da9f37e479cde14b, type: 3}
   - {fileID: 4327634686606648461, guid: 32501e71b40dc474bb4e09e889247f22, type: 3}
   inventroyParent: {fileID: 721121849}
+  usePlayerPrefs: 1
   fileName: visuals
   pool: []
   pathText: {fileID: 1997810596}
+  countText: {fileID: 997677853}
+--- !u!114 &53446965 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4478825231177047293, guid: 006044d05dfb2ba4ca8a2bf129da8ff7,
+    type: 3}
+  m_PrefabInstance: {fileID: 997677851}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53446963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d9c61093d9c7e40a04f7fb6049e1a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &181099230
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,6 +1000,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 997677851}
   m_PrefabAsset: {fileID: 0}
+--- !u!102 &997677853 stripped
+TextMesh:
+  m_CorrespondingSourceObject: {fileID: 6866259393277512400, guid: 006044d05dfb2ba4ca8a2bf129da8ff7,
+    type: 3}
+  m_PrefabInstance: {fileID: 997677851}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1079964767 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3456838522220260497, guid: d2fea6b6d80fd104ba370eec2ee4184f,
@@ -1214,8 +1234,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1358585384}
   - component: {fileID: 1358585383}
+  - component: {fileID: 1358585385}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Speech
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1239,9 +1260,9 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 53446963}
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 1358585385}
+          m_MethodName: DisableEditorMode
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1254,9 +1275,9 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 53446963}
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 1358585385}
+          m_MethodName: EnableEditorMode
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1281,6 +1302,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1358585385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358585382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ddbcc18ab040af42b8873887e5ad84e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEditorMode: 1
+  dashboard: {fileID: 53446963}
+  dashboardCommand: {fileID: 53446965}
 --- !u!1001 &1594813771
 PrefabInstance:
   m_ObjectHideFlags: 0

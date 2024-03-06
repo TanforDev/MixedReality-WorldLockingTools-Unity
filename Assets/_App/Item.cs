@@ -4,5 +4,16 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public PresistentObject presistentObject;
+    [SerializeField] private PresistentObject presistentObject;
+    public PresistentObject PresistentObject
+    {
+        get
+        {
+            return presistentObject;
+        }
+        set
+        {
+            presistentObject = value;
+        }
+    }
 }

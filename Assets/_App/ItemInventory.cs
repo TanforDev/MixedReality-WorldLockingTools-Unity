@@ -1,14 +1,8 @@
 ﻿using Microsoft.MixedReality.WorldLocking.Core;
-using Microsoft.MixedReality.WorldLocking.Examples;
-using Microsoft.MixedReality.WorldLocking.Tools;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using UnityEngine;
 using SimpleJSON;
-using UnityEngine.UI;
-using Microsoft.MixedReality.Toolkit.OpenVR.Headers;
 
 public class ItemInventory : MonoBehaviour
 {
@@ -16,12 +10,15 @@ public class ItemInventory : MonoBehaviour
 
     [SerializeField] private Transform inventroyParent;
 
+
+    [SerializeField] private bool usePlayerPrefs;
     [SerializeField] private string fileName = "visuals";
 
     [SerializeField] private List<PresistentObject> pool = new List<PresistentObject>();
     private List<GameObject> instances = new List<GameObject>();
 
     [SerializeField] private TextMesh pathText;
+    [SerializeField] private TextMesh countText;
 
     private void Start()
     {
@@ -37,7 +34,7 @@ public class ItemInventory : MonoBehaviour
 
         foreach (var item in pool)
         {
-            RestoreItem(item.objectIndex, item.pose);
+            RestoreItem(item);
         }
     }
 
@@ -75,9 +72,16 @@ public class ItemInventory : MonoBehaviour
 
             pool.Add(obj);
         }
+
+        countText.text = "Count: " + pool.Count;
     }
     private string GetFile()
     {
+        if (usePlayerPrefs)
+        {
+            return PlayerPrefs.GetString(fileName, "");
+        }
+
         //Load text from a JSON file (Assets/Resources/Data/visuals.json)
         var targetFile = Resources.Load<TextAsset>("Data/" + fileName);
 
@@ -87,7 +91,7 @@ public class ItemInventory : MonoBehaviour
             pathText.text = "File is null";
             return "";
         }
-        pathText.text = Path.Combine(Application.persistentDataPath, fileName + ".json");
+        pathText.text = $"{Application.persistentDataPath}/{fileName}.json";
         return targetFile.text;
     }
 
@@ -113,7 +117,7 @@ public class ItemInventory : MonoBehaviour
 
         PresistentObject presistentObject = new PresistentObject(index, localPose);
 
-        newItem.presistentObject = presistentObject;
+        newItem.PresistentObject = presistentObject;
 
         pool.Add(presistentObject);
         SaveInventory();
@@ -121,11 +125,13 @@ public class ItemInventory : MonoBehaviour
         return newItem.gameObject;
     }
 
-    public GameObject RestoreItem(int index, Pose localPose)
+    public GameObject RestoreItem(PresistentObject presistentObject)
     {
-        var newItem = CreateObject(index);
+        var newItem = CreateObject(presistentObject.objectIndex);
 
-        newItem.transform.SetLocalPose(localPose);
+        newItem.transform.SetLocalPose(presistentObject.pose);
+
+        newItem.PresistentObject = presistentObject;
 
         return newItem.gameObject;
     }
@@ -161,17 +167,25 @@ public class ItemInventory : MonoBehaviour
 
     public void SaveInventory()
     {
+        countText.text = "Count: " + pool.Count;
+
         string json = GetPoolJson();
+
+        if (usePlayerPrefs)
+        {
+            PlayerPrefs.SetString(fileName, json);
+            return;
+        }
 
 
         // Define the file path differently based on whether it's in the editor or in a build
         string path;
 #if UNITY_EDITOR
         // In the editor, save the file to the Assets folder
-        path = Path.Combine(Application.dataPath, "Resources/Data/" + fileName + ".json");
+        path = $"{Application.dataPath}/Resources/Data/{fileName}.json";
 #else
     // In a build, save the file to the persistent data path
-    path = Path.Combine(Application.persistentDataPath, fileName + ".json");
+    path = $"{Application.persistentDataPath}/{fileName}.json";
 #endif
 
         File.WriteAllText(path, json);
@@ -200,9 +214,9 @@ public class ItemInventory : MonoBehaviour
             return;
         }
 
-        if (pool.Contains(itm.presistentObject))
+        if (pool.Contains(itm.PresistentObject))
         {
-            int index = pool.IndexOf(itm.presistentObject);
+            int index = pool.IndexOf(itm.PresistentObject);
             pool.RemoveAt(index);
 
             DestroyImmediate(hitObject);
