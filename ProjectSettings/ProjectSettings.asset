@@ -570,7 +570,7 @@ PlayerSettings:
   metroCertificatePassword: 
   metroCertificateSubject: Microsoft
   metroCertificateIssuer: Microsoft
-  metroCertificateNotAfter: 802b6fd5598ddb01
+  metroCertificateNotAfter: 80e9fb09258edb01
   metroApplicationDescription: Template_3D
   wsaImages: {}
   metroTileShortName: FrozenWorldDemo

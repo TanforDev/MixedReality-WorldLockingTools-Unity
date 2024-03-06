@@ -165,7 +165,6 @@ GameObject:
   - component: {fileID: 6465355957646805069}
   - component: {fileID: 6465355957636999083}
   - component: {fileID: 2029771713729371202}
-  - component: {fileID: 465059798341889335}
   m_Layer: 0
   m_Name: volcube_planet
   m_TagString: Untagged
@@ -221,20 +220,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.37, y: 1.37, z: 1.37}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &465059798341889335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6465355957646513261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b54ea26464070b499d1c6f072d7c6a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  modelPositionSource: 0
-  orienter: {fileID: 0}
-  prefab_FeelerRay: {fileID: 1335525745713039694, guid: 498c830c5e5604e44b3788a7f47a4392,
-    type: 3}
-  allowRotation: 1

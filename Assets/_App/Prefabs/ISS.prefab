@@ -196,7 +196,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1708451200374182778}
   - component: {fileID: 322553997097760631}
-  - component: {fileID: 8931028632475324543}
   m_Layer: 0
   m_Name: ISS
   m_TagString: Untagged
@@ -232,20 +231,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.27457526, y: 0.23909885, z: 0.095419526}
   m_Center: {x: -0.0038432926, y: 0.00029563904, z: 0.054988384}
---- !u!114 &8931028632475324543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3103443437213994512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b54ea26464070b499d1c6f072d7c6a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  modelPositionSource: 0
-  orienter: {fileID: 0}
-  prefab_FeelerRay: {fileID: 1335525745713039694, guid: 498c830c5e5604e44b3788a7f47a4392,
-    type: 3}
-  allowRotation: 1

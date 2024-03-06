@@ -135,39 +135,28 @@ public class PlaceItems : InputSystemGlobalHandlerListener, IMixedRealityPointer
         var hitUp = new Vector3(0.0f, 1.0f, 0.0f);
         var hitRot = Quaternion.LookRotation(hitDirProj, hitUp);
 
-        var newObj = inventory.SpawnItem(index);
-
-        newObj.transform.position = hitPos;
-        newObj.transform.rotation = hitRot;
-
-
         Pose pose = new Pose(hitPos, hitRot);
 
+        var newObj = inventory.SpawnItem(index, pose);
 
-        SpacePinOrientableManipulation pin = newObj.GetComponent<SpacePinOrientableManipulation>();
-        pin.SetSpongyPose(pose);
-
-
-
-        //var twa = newObj.AddComponent<ToggleWorldAnchor>();
-        //twa.AlwaysLock = true;
-
-
-        EnterIdleMode();
-
-        radioSet.CurrentIndex = ModeToIndex(BuildMode.Idle);
+        ForceIdleMode();
     }
 
     private void RemoveObject(RayHit rayHit)
     {
         if (rayHit.gameObject != null)
         {
-            RemovableGroup removal = rayHit.gameObject.GetComponentInParent<RemovableGroup>();
-            if (removal != null)
-            {
-                GameObject.Destroy(removal.gameObject);
-            }
+            inventory.Destroy(rayHit.gameObject);
+
+            ForceIdleMode();
         }
+    }
+
+    private void ForceIdleMode()
+    {
+        EnterIdleMode();
+
+        radioSet.CurrentIndex = ModeToIndex(BuildMode.Idle);
     }
 
     private void SyncRadioSet()
@@ -210,6 +199,7 @@ public class PlaceItems : InputSystemGlobalHandlerListener, IMixedRealityPointer
     public void EnterPlaceObjectMode(int index)
     {
         mode = BuildMode.PlaceObject;
+        objectToPlace = index;
     }
 
     public void EnterRemoveMode()

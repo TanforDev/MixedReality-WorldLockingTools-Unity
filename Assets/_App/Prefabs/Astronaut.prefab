@@ -2866,7 +2866,6 @@ GameObject:
   - component: {fileID: 6580747767529096487}
   - component: {fileID: 3482639497927179682}
   - component: {fileID: 680753416721532820}
-  - component: {fileID: 430195500377435834}
   m_Layer: 0
   m_Name: Astronaut
   m_TagString: Untagged
@@ -2931,20 +2930,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.4999995, y: 14.22154, z: 7.4999995}
   m_Center: {x: 0, y: 3.7613006, z: 0}
---- !u!114 &430195500377435834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4327634686606648461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b54ea26464070b499d1c6f072d7c6a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  modelPositionSource: 0
-  orienter: {fileID: 0}
-  prefab_FeelerRay: {fileID: 1335525745713039694, guid: 498c830c5e5604e44b3788a7f47a4392,
-    type: 3}
-  allowRotation: 1
